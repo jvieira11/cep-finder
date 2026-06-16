@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% set active = "busca" %}
+
+{% block conteudo %}
+
+<h1 class="page-title">Consultar endereço</h1>
+<p class="page-subtitle">Digite um CEP para buscar o endereço e salvar no histórico.</p>
+
+<div class="card">
+    <form method="POST" action="/buscar">
+        <div class="search-row">
+            <input
+                class="input-cep"
+                type="text"
+                name="cep"
+                placeholder="00000-000"
+                maxlength="9"
+                autocomplete="off"
+                autofocus
+            >
+            <button class="btn-primary" type="submit">Buscar CEP</button>
+        </div>
+    </form>
+</div>
+
+{% if erro %}
+<div class="alert alert-error">
+    ❌ {{ erro }}
+</div>
+{% endif %}
+
+{% if resultado %}
+<div class="card">
+    <p class="result-title">Endereço encontrado e salvo</p>
+    <table class="result-table">
+        <tr>
+            <td class="label">CEP</td>
+            <td class="value"><span class="cep-badge">{{ resultado.cep }}</span></td>
+        </tr>
+        <tr>
+            <td class="label">Logradouro</td>
+            <td class="value">{{ resultado.logradouro or '—' }}</td>
+        </tr>
+        <tr>
+            <td class="label">Bairro</td>
+            <td class="value">{{ resultado.bairro or '—' }}</td>
+        </tr>
+        <tr>
+            <td class="label">Cidade</td>
+            <td class="value">{{ resultado.localidade }}</td>
+        </tr>
+        <tr>
+            <td class="label">Estado</td>
+            <td class="value">{{ resultado.uf }}</td>
+        </tr>
+        <tr>
+            <td class="label">DDD</td>
+            <td class="value">{{ resultado.ddd }}</td>
+        </tr>
+    </table>
+</div>
+{% endif %}
+
+{% endblock %}

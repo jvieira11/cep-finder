@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultor de CEPs</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">CEP Finder</a>
+        <a href="/"          class="navbar-link {% if active == 'busca'     %}active{% endif %}">Buscar</a>
+        <a href="/historico" class="navbar-link {% if active == 'historico' %}active{% endif %}">Histórico</a>
+    </nav>
+
+    <div class="container">
+        {% block conteudo %}{% endblock %}
+    </div>
+
+</body>
+</html>

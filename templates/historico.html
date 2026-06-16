@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% set active = "historico" %}
+
+{% block conteudo %}
+
+<h1 class="page-title">
+    Histórico de consultas
+    {% if registros %}
+        <span class="count-badge">{{ registros | length }}</span>
+    {% endif %}
+</h1>
+<p class="page-subtitle">Todos os CEPs buscados ficam salvos aqui.</p>
+
+<div class="card">
+    {% if registros %}
+    <table class="history-table">
+        <thead>
+            <tr>
+                <th>CEP</th>
+                <th>Logradouro</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>UF</th>
+                <th>Consultado em</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in registros %}
+            <tr>
+                <td class="td-cep">{{ r[0] }}</td>
+                <td>{{ r[1] or '—' }}</td>
+                <td>{{ r[2] or '—' }}</td>
+                <td>{{ r[3] }}</td>
+                <td>{{ r[4] }}</td>
+                <td class="td-meta">{{ r[5].strftime('%d/%m/%Y %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>Nenhum CEP consultado ainda. <a href="/">Faça sua primeira busca.</a></p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

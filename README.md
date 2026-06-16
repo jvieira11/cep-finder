@@ -10,6 +10,12 @@ Aplicação web para consultar endereços pelo CEP, com histórico salvo em banc
 - Jinja2 (templates HTML)
 - API ViaCEP
 
+## Funcionalidades
+
+- Busca de endereço por CEP via API ViaCEP
+- Salvamento automático no banco de dados
+- Histórico completo de consultas
+
 ## Como rodar localmente
 
 ### 1. Clone o repositório
@@ -60,9 +66,3 @@ python -m uvicorn app:app --reload
 ```
 
 Acesse em **http://localhost:8000**
-
-## Funcionalidades
-
-- Busca de endereço por CEP via API ViaCEP
-- Salvamento automático no banco de dados
-- Histórico completo de consultas
